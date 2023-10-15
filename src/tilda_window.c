@@ -1108,7 +1108,6 @@ gint tilda_window_add_tab (tilda_window *tw)
     if (config_getbool ("insert_tab_after_current")) {
         index = 1 + gtk_notebook_get_current_page (GTK_NOTEBOOK(tw->notebook));
     }
-    index = gtk_notebook_insert_page (GTK_NOTEBOOK(tw->notebook), tt->hbox, label, index);
 
     /* Initialize the terminal */
     tt = tilda_term_init (tw, index);
@@ -1122,6 +1121,7 @@ gint tilda_window_add_tab (tilda_window *tw)
 
     /* Create page and insert it into the notebook */
     label = gtk_label_new (config_getstr("title"));
+    index = gtk_notebook_insert_page (GTK_NOTEBOOK(tw->notebook), tt->hbox, label, index);
     gtk_notebook_set_current_page (GTK_NOTEBOOK(tw->notebook), index);
     gtk_notebook_set_tab_reorderable (GTK_NOTEBOOK(tw->notebook), tt->hbox, TRUE);
 
